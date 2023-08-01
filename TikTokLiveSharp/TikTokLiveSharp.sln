@@ -1,12 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.5.33424.131
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33328.57
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TikTokLiveSharp", "TikTokLiveSharp.csproj", "{D7BEE4FF-E9EA-4D1E-A685-47C91383DE17}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TikTokLiveSharpTestApplication", "..\TikTokLiveSharp_TestApplication\TikTokLiveSharpTestApplication.csproj", "{5B66CB3F-C393-428D-82F3-B52E5E1A063D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TikTokLiveSharpTestWinFormsApp", "..\TikTokLiveSharpTestWinFormsApp\TikTokLiveSharpTestWinFormsApp.csproj", "{3A81097A-67E3-4115-B5C7-A152A2975C82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +23,10 @@ Global
 		{5B66CB3F-C393-428D-82F3-B52E5E1A063D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B66CB3F-C393-428D-82F3-B52E5E1A063D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B66CB3F-C393-428D-82F3-B52E5E1A063D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A81097A-67E3-4115-B5C7-A152A2975C82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A81097A-67E3-4115-B5C7-A152A2975C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A81097A-67E3-4115-B5C7-A152A2975C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A81097A-67E3-4115-B5C7-A152A2975C82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

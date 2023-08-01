@@ -71,7 +71,10 @@ namespace TikTokLiveSharp.Client.Socket
             try
             {
                 token.ThrowIfCancellationRequested();
-                await clientWebSocket.CloseOutputAsync(WebSocketCloseStatus.NormalClosure, string.Empty, token);
+                if (clientWebSocket != null)
+                {
+                    await clientWebSocket.CloseOutputAsync(WebSocketCloseStatus.NormalClosure, string.Empty, token);
+                }
             }
             catch (OperationCanceledException)
             { } // Do Not Throw this. Clean exit

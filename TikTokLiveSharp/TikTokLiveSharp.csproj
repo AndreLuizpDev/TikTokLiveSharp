@@ -224,7 +224,8 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="protobuf-net" Version="2.0.0.668" />
+    <PackageReference Include="protobuf-net" Version="3.2.26" />
+    <PackageReference Include="protobuf-net.Core" Version="3.2.26" />
   </ItemGroup>
 
 </Project>

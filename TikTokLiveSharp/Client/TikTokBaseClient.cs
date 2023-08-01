@@ -4,13 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 using TikTokLiveSharp.Client.HTTP;
 using TikTokLiveSharp.Client.Proxy;
 using TikTokLiveSharp.Client.Socket;
@@ -444,11 +444,9 @@ namespace TikTokLiveSharp.Client
                     WebsocketRouteParam param = webcastResponse.SocketParams[i];
                     if (ShouldLog(LogLevel.Verbose))
                         Debug.Log($"Adding Custom Param {param.Name}-{param.Value}");
-                    if (clientParams.ContainsKey(param.Name))
-                        clientParams[param.Name] = param.Value;
-                    else clientParams.Add(param.Name, param.Value);
+                    clientParams[param.Name] = param.Value;
                 }
-                string url = $"{webcastResponse.SocketUrl}?{string.Join("&", clientParams.Select(x => $"{x.Key}={HttpUtility.UrlEncode(x.Value.ToString())}"))}";
+                string url = $"{webcastResponse.SocketUrl}?{string.Join("&", clientParams.Select(x => $"{x.Key}={WebUtility.UrlEncode(x.Value.ToString())}"))}";
                 if (ShouldLog(LogLevel.Verbose))
                     Debug.Log($"Creating Socket with URL {url}");
                 socketClient = new TikTokWebSocket(TikTokHttpRequest.CookieJar, token, settings.SocketBufferSize);
@@ -645,22 +643,23 @@ namespace TikTokLiveSharp.Client
                 try
                 {
                     token.ThrowIfCancellationRequested();
+                    Debug.Log("Received Message");
                     using (var websocketMessageStream = new MemoryStream(response.Array, 0, response.Count))
                     {
                         token.ThrowIfCancellationRequested();
                         WebcastWebsocketMessage websocketMessage = Serializer.Deserialize<WebcastWebsocketMessage>(websocketMessageStream);
-                        if (websocketMessage.Binary != null)
-                        {
-                            using (var messageStream = new MemoryStream(websocketMessage.Binary))
-                            {
-                                token.ThrowIfCancellationRequested();
-                                WebcastResponse message = Serializer.Deserialize<WebcastResponse>(messageStream);
-                                token.ThrowIfCancellationRequested();
-                                await SendAcknowledgement(websocketMessage.Id);
-                                token.ThrowIfCancellationRequested();
-                                HandleWebcastMessages(message);
-                            }
-                        }
+                        //if (websocketMessage.Binary != null)
+                        //{
+                        //    using (var messageStream = new MemoryStream(websocketMessage.Binary))
+                        //    {
+                        //        token.ThrowIfCancellationRequested();
+                        //        WebcastResponse message = Serializer.Deserialize<WebcastResponse>(messageStream);
+                        //        token.ThrowIfCancellationRequested();
+                        //        await SendAcknowledgement(websocketMessage.Id);
+                        //        token.ThrowIfCancellationRequested();
+                        //        HandleWebcastMessages(message);
+                        //    }
+                        //}
                     }
                 }
                 catch (OperationCanceledException)

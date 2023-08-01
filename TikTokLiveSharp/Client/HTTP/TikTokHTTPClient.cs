@@ -3,6 +3,7 @@ using ProtoBuf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -161,7 +162,7 @@ namespace TikTokLiveSharp.Client.HTTP
         /// <exception cref="InsufficientPermissionException"></exception>
         private async Task<string> GetSignedUrl(string url, Dictionary<string, object> parameters = null)
         {
-            string getParams = parameters != null ? $"?{string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"))}" : string.Empty;
+            string getParams = parameters != null ? $"?{string.Join("&", parameters.Select(x => $"{x.Key}={WebUtility.UrlEncode(x.Value.ToString())}"))}" : string.Empty;
             ITikTokHttpRequest request = new TikTokHttpRequest(Constants.TIKTOK_SIGN_API)
                 .SetQueries(new Dictionary<string, object>()
                 {
