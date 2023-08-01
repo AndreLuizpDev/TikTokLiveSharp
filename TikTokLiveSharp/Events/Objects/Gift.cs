@@ -11,6 +11,14 @@ namespace TikTokLiveSharp.Events.MessageData.Objects
 
         public readonly Picture Picture;
 
+        /// <summary>
+        /// Can this Gift be sent in a Streak?
+        /// <para>
+        /// Gifts are only Streakable if their Type is 1
+        /// </para>
+        /// </summary>
+        public bool IsStreakable => Type == 1;
+
         internal Gift(Models.Protobuf.Objects.Gift gift)
         {
             Id = gift?.Id ?? 0;

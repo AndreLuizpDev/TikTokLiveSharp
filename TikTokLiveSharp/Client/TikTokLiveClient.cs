@@ -790,8 +790,15 @@ namespace TikTokLiveSharp.Client
             else
             {
                 TikTokGift newGift = new TikTokGift(message);
-                lock (activeGifts)
-                    activeGifts.Add(giftId, newGift);
+                if (newGift.Gift.IsStreakable)
+                {
+                    lock (activeGifts)
+                        activeGifts.Add(giftId, newGift);
+                }
+                else
+                {
+                    newGift.FinishStreak();
+                }
                 if (ShouldLog(LogLevel.Verbose))
                     Debug.Log($"New Gift[{giftId.Gift}]Amount[{message.Amount}]");
                 RunEvent(OnGift, newGift);

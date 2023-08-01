@@ -23,7 +23,10 @@ namespace TikTokLiveSharp.Events.MessageData.Objects
             if (message?.Sender != null)
                 Sender = new User(message.Sender);
             Amount = message?.Amount ?? 0;
-            StreakFinished = message?.RepeatEnd ?? true;
+            if (Gift.IsStreakable)
+                StreakFinished = message?.RepeatEnd ?? true;
+            else
+                StreakFinished = true;
         }
 
         internal virtual void FinishStreak()
