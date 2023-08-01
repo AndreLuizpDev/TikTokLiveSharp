@@ -5,8 +5,9 @@ namespace TikTokLiveSharp.Events.MessageData.Objects
     public class TikTokGift
     {
         public delegate void TikTokGiftEventHandler<TEventArgs>(TikTokGift gift, TEventArgs args);
+        public delegate void TikTokGiftChangedEventHandler(TikTokGift gift, uint change, uint newAmount);
 
-        public event TikTokGiftEventHandler<uint> OnAmountChanged;
+        public event TikTokGiftChangedEventHandler OnAmountChanged;
         public event TikTokGiftEventHandler<uint> OnStreakFinished;
 
         public readonly Gift Gift;
@@ -46,8 +47,9 @@ namespace TikTokLiveSharp.Events.MessageData.Objects
 #if UNITY // This Code is strictly for TikTokLive-Unity
             TikTokLiveUnity.Utils.Dispatcher.RunOnMainThread(() => {
 #endif
+                uint change = amount - Amount;
                 Amount = amount;
-                OnAmountChanged?.Invoke(this, amount);
+                OnAmountChanged?.Invoke(this, change, Amount);
 #if UNITY
             });
 #endif
