@@ -16,7 +16,7 @@ namespace TikTokLiveSharp.Models.Protobuf.Messages
             Joined = 1,
             Subscribed = 3
             // ?? = 26
-            // ?? = 27
+            // ?? = 27 (User2 is set to Host-Info?)
             // ?? = 50 (share?)
         }
 

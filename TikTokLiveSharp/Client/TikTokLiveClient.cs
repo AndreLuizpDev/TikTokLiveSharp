@@ -90,6 +90,7 @@ namespace TikTokLiveSharp.Client
         public event TikTokEventHandler<RoomMessage> OnRoomIntro;
         public event TikTokEventHandler<RoomMessage> OnRoomMessage;
         public event TikTokEventHandler<RoomMessage> OnSystemMessage;
+        public event TikTokEventHandler<RoomVerifyMessage> OnRoomVerify;
         /// <summary>
         /// Event fired when comments are received.
         /// </summary>
@@ -141,6 +142,7 @@ namespace TikTokLiveSharp.Client
         /// Event fired when a LinkMicBattle starts
         /// </summary>
         public event TikTokEventHandler<LinkMicBattle> OnLinkMicBattle;
+        public event TikTokEventHandler<LinkMicBattleTaskMessage> OnLinkMicBattleTask;
         public event TikTokEventHandler<LinkMicArmies> OnLinkMicArmies;
         /// <summary>
         /// Data for LinkMic-Connection(s)
@@ -427,6 +429,17 @@ namespace TikTokLiveSharp.Client
                             RunEvent(OnClosedCaption, new Caption(captionMessage));
                         }
                         return;
+                    case nameof(WebcastRoomVerifyMessage):
+                        WebcastRoomVerifyMessage roomVerifyMessage = Deserialize<WebcastRoomVerifyMessage>(stream);
+                        if (roomVerifyMessage != null)
+                        {
+                            if (settings.CheckForUnparsedData)
+                                CheckForUnparsedData(roomVerifyMessage);
+                            if (ShouldLog(LogLevel.Verbose))
+                                Debug.Log("Handling RoomVerifyMessage");
+                            RunEvent(OnRoomVerify, new RoomVerifyMessage(roomVerifyMessage));
+                        }
+                        return;
                     #endregion
 
                     #region User-Interaction
@@ -529,6 +542,17 @@ namespace TikTokLiveSharp.Client
                             if (ShouldLog(LogLevel.Verbose))
                                 Debug.Log($"Handling LinkMicBattle");
                             RunEvent(OnLinkMicBattle, new LinkMicBattle(linkMicBattleMessage));
+                        }
+                        return;
+                    case nameof(WebcastLinkmicBattleTaskMessage):
+                        WebcastLinkmicBattleTaskMessage linkMicBattleTaskMessage = Deserialize<WebcastLinkmicBattleTaskMessage>(stream);
+                        if (linkMicBattleTaskMessage != null)
+                        {
+                            if (settings.CheckForUnparsedData)
+                                CheckForUnparsedData(linkMicBattleTaskMessage);
+                            if (ShouldLog(LogLevel.Verbose))
+                                Debug.Log($"Handling WebcastLinkmicBattleTask");
+                            RunEvent(OnLinkMicBattleTask, new LinkMicBattleTaskMessage(linkMicBattleTaskMessage));
                         }
                         return;
                     case nameof(WebcastLinkMicArmies):

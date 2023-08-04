@@ -155,6 +155,8 @@ namespace TikTokLiveUnity
 
         public event TikTokEventHandler<RoomMessage> OnSystemMessage;
 
+        public event TikTokEventHandler<RoomVerifyMessage> OnRoomVerifyMessage; 
+
         /// <summary>
         /// Event fired when comments are received.
         /// </summary>
@@ -216,6 +218,7 @@ namespace TikTokLiveUnity
         /// Event fired when a LinkMicBattle starts
         /// </summary>
         public event TikTokEventHandler<LinkMicBattle> OnLinkMicBattle;
+        public event TikTokEventHandler<LinkMicBattleTaskMessage> OnLinkMicBattleTask;
 
         public event TikTokEventHandler<LinkMicArmies> OnLinkMicArmies;
 
@@ -301,6 +304,8 @@ namespace TikTokLiveUnity
         [SerializeField]
         private UnityEvent<RoomMessage> onSystemMessage;
         [SerializeField]
+        private UnityEvent<RoomVerifyMessage> onRoomVerifyMessage;
+        [SerializeField]
         private UnityEvent<Comment> onComment;
         [SerializeField]
         private UnityEvent<RoomViewerData> onViewerData;
@@ -324,6 +329,8 @@ namespace TikTokLiveUnity
         private UnityEvent<Subscribe> onSubscribe;
         [SerializeField]
         private UnityEvent<LinkMicBattle> onLinkMicBattle;
+        [SerializeField]
+        private UnityEvent<LinkMicBattleTaskMessage> onLinkMicBattleTask;
         [SerializeField]
         private UnityEvent<LinkMicArmies> onLinkMicArmies;
         [SerializeField]
@@ -637,6 +644,7 @@ namespace TikTokLiveUnity
             OnDisconnected += (_, args) => onDisconnected?.Invoke(args);
             OnRoomIntro += (_, args) => onRoomIntro?.Invoke(args);
             OnRoomMessage += (_, args) => onRoomMessage?.Invoke(args);
+            OnRoomVerifyMessage += (_, args) => onRoomVerifyMessage?.Invoke(args);
             OnSystemMessage += (_, args) => onSystemMessage?.Invoke(args);
             OnComment += (_, args) => onComment?.Invoke(args);
             OnViewerData += (_, args) => onViewerData?.Invoke(args);
@@ -650,6 +658,7 @@ namespace TikTokLiveUnity
             OnJoin += (_, args) => onJoin?.Invoke(args);
             OnSubscribe += (_, args) => onSubscribe?.Invoke(args);
             OnLinkMicBattle += (_, args) => onLinkMicBattle?.Invoke(args);
+            OnLinkMicBattleTask += (_, args) => onLinkMicBattleTask?.Invoke(args);
             OnLinkMicArmies += (_, args) => onLinkMicArmies?.Invoke(args);
             OnLinkMicMethod += (_, args) => onLinkMicMethod?.Invoke(args);
             OnLinkMicFanTicket += (_, args) => onLinkMicFanTicket?.Invoke(args);
@@ -687,6 +696,7 @@ namespace TikTokLiveUnity
             client.OnDisconnected += OnDisconnected.Invoke;
             client.OnRoomIntro += OnRoomIntro.Invoke;
             client.OnRoomMessage += OnRoomMessage.Invoke;
+            client.OnRoomVerify += OnRoomVerifyMessage.Invoke;
             client.OnSystemMessage += OnSystemMessage.Invoke;
             client.OnComment += OnComment.Invoke;
             client.OnViewerData += OnViewerData.Invoke;
@@ -700,6 +710,7 @@ namespace TikTokLiveUnity
             client.OnJoin += OnJoin.Invoke;
             client.OnSubscribe += OnSubscribe.Invoke;
             client.OnLinkMicBattle += OnLinkMicBattle.Invoke;
+            client.OnLinkMicBattleTask += OnLinkMicBattleTask.Invoke;
             client.OnLinkMicArmies += OnLinkMicArmies.Invoke;
             client.OnLinkMicMethod += OnLinkMicMethod.Invoke;
             client.OnLinkMicFanTicket += OnLinkMicFanTicket.Invoke;
@@ -737,6 +748,7 @@ namespace TikTokLiveUnity
             client.OnDisconnected -= OnDisconnected.Invoke;
             client.OnRoomIntro -= OnRoomIntro.Invoke;
             client.OnRoomMessage -= OnRoomMessage.Invoke;
+            client.OnRoomVerify -= OnRoomVerifyMessage.Invoke;
             client.OnSystemMessage -= OnSystemMessage.Invoke;
             client.OnComment -= OnComment.Invoke;
             client.OnViewerData -= OnViewerData.Invoke;
@@ -750,6 +762,7 @@ namespace TikTokLiveUnity
             client.OnJoin -= OnJoin.Invoke;
             client.OnSubscribe -= OnSubscribe.Invoke;
             client.OnLinkMicBattle -= OnLinkMicBattle.Invoke;
+            client.OnLinkMicBattleTask -= OnLinkMicBattleTask.Invoke;
             client.OnLinkMicArmies -= OnLinkMicArmies.Invoke;
             client.OnLinkMicMethod -= OnLinkMicMethod.Invoke;
             client.OnLinkMicFanTicket -= OnLinkMicFanTicket.Invoke;

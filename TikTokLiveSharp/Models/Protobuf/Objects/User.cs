@@ -22,6 +22,12 @@ namespace TikTokLiveSharp.Models.Protobuf.Objects
         public string NickName { get; set; } = "";
 
         /// <summary>
+        /// Thumbnail? (Used in WebcastLinkMicBattle-Teams)
+        /// </summary>
+        [ProtoMember(4)]
+        public Picture Thumbnail { get; set; }
+
+        /// <summary>
         /// User-Description
         /// </summary>
         [ProtoMember(5)]

@@ -33,6 +33,10 @@ namespace TikTokLiveSharp.Models.Protobuf.Messages
 
         [ProtoMember(13)]
         public List<LinkMicBattleTeamData> TeamData { get; set; } = new List<LinkMicBattleTeamData>();
+
+        // Winner-Id?
+        [ProtoMember(16)]
+        public ulong Id2 { get; set; }
     }
 
     [ProtoContract]
@@ -52,6 +56,15 @@ namespace TikTokLiveSharp.Models.Protobuf.Messages
 
         [ProtoMember(5)]
         public uint Data2 { get; set; }
+
+        [ProtoMember(6)]
+        public uint Data3 { get; set; }
+
+        [ProtoMember(7)]
+        public LinkMicBattleGift BattleGift { get; set; }
+
+        [ProtoMember(8)]
+        public uint Data4 { get; set; }
     }
 
     [ProtoContract]
@@ -91,7 +104,17 @@ namespace TikTokLiveSharp.Models.Protobuf.Messages
         public ulong Id { get; set; }
 
         [ProtoMember(2)]
-        public List<User> Users { get; set; } = new List<User>();
+        public LinkMicBattleTeamPlayers TeamPlayers { get; set; }
+    }
+
+    [ProtoContract]
+    public partial class LinkMicBattleTeamPlayers : AProtoBase
+    {
+     //   [ProtoMember(1)] 
+     //   public List<User> Players { get; set; } = new List<User>();
+
+        [ProtoMember(2)]
+        public uint Data1 { get; set; }
     }
 
 
@@ -103,5 +126,17 @@ namespace TikTokLiveSharp.Models.Protobuf.Messages
 
         [ProtoMember(2)]
         public LinkMicBattleData Data { get; set; }
+    }
+
+    [ProtoContract]
+    public partial class LinkMicBattleGift : AProtoBase
+    {
+        // Found with Value: pm_mt_match_gift_option_select_page_all_option
+        [ProtoMember(2)]
+        [DefaultValue("")]
+        public string Type { get; set; } = "";
+
+        [ProtoMember(3)]
+        public Picture Picture { get; set; }
     }
 }

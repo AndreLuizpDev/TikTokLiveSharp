@@ -52,6 +52,9 @@ namespace TikTokLiveSharp.Models.Protobuf.Messages
 
         [ProtoMember(10)]
         public ulong Data7 { get; set; }
+
+        [ProtoMember(11)]
+        public uint Data8 { get; set; }
     }
 
     [ProtoContract]

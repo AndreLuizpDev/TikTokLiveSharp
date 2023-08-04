@@ -1,5 +1,6 @@
 using ProtoBuf;
 using System.Collections.Generic;
+using System.ComponentModel;
 using TikTokLiveSharp.Models.Protobuf.Messages.Headers;
 using TikTokLiveSharp.Models.Protobuf.Objects;
 
@@ -49,5 +50,15 @@ namespace TikTokLiveSharp.Models.Protobuf.Messages
 
         [ProtoMember(13)]
         public uint Data5 { get; set; }
+
+        /// <summary>
+        /// Some form of GUID?
+        /// <para>
+        /// Example: "202308011954135D1C4534EB099D45E64E"
+        /// </para>
+        /// </summary>
+        [ProtoMember(17)]
+        [DefaultValue("")]
+        public string Data6 { get; set; } = "";
     }
 }

@@ -21,5 +21,15 @@ namespace TikTokLiveSharp.Models.Protobuf.Objects.DataObjects
         [ProtoMember(4)]
         [DefaultValue("")]
         public string Id2 { get; set; } = "";
+        
+        /// <summary>
+        /// Known Values:
+        ///
+        /// - 0 (in UserRanking)
+        /// - 36 (in Badge)
+        /// </summary>
+        [ProtoMember(5)]
+        [DefaultValue("")]
+        public string Data3 { get; set; } = "";
     }
 }

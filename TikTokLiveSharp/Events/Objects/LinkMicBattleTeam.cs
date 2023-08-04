@@ -17,7 +17,7 @@ namespace TikTokLiveSharp.Events.MessageData.Objects
         internal LinkMicBattleTeam(Models.Protobuf.Messages.LinkMicBattleTeam team)
         {
             TeamId = team?.Id ?? 0;
-            Users = team?.Users?.Select(u => u == null ? null : new User(u))?.ToList();
+           // Users = team?.TeamPlayers?.Players?.Select(u => u == null ? null : new User(u))?.ToList();
         }
     }
 }
